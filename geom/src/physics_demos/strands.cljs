@@ -1,4 +1,4 @@
-(ns physics-demos.stands
+(ns physics-demos.strands
   (:require
    [thi.ng.geom.core :as g]
    [thi.ng.geom.core.vector :as v :refer [vec2 vec3]]
