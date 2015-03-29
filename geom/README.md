@@ -1,14 +1,14 @@
-# webgl-demos
-
-A Clojure library designed to ... well, that part is up to you.
+# geom demos
 
 ## Usage
 
-FIXME
+```
+lein cljsbuild once prod
+open resources/public/strands.html
+```
 
 ## License
 
-Copyright © 2015 FIXME
+Copyright © 2015 Karsten Schmidt
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the [Apache Software License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
