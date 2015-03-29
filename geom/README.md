@@ -1,6 +1,8 @@
 # geom demos
 
-## Usage
+- [SVG physics strands](http://demo.thi.ng/geom/physics/strands.html) (Clojurescript online demo)
+
+## Building from source
 
 ```
 lein cljsbuild once prod
