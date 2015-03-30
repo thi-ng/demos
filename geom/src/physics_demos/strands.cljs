@@ -11,7 +11,7 @@
    [thi.ng.domus.core :as dom]))
 
 (defn attract!
-  "Takes a 3d attractor position, a particle and attractor
+  "Takes a 2d or 3d attractor position, a particle and attractor
   params (squared radius, strength, time delta). If particle is within
   attraction radius, applies proportional strength force to particle.
   If strength is negative, particle will be repelled."
