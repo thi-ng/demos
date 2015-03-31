@@ -47,7 +47,7 @@
   (fn [physics _]
     (reduce
      #(g/add-point % (phys/position %2) %2)
-     (g/clear* accel)
+     (g/clear! accel)
      (:particles physics))))
 
 (defn make-strand
@@ -87,7 +87,7 @@
                       {:particles (concat p1 p2)
                        :springs   (concat s1 s2)
                        :behaviors {:g (phys/gravity (:gravity state))
-                                   :f (accelerated-force-field accel 1.5 -1)}
+                                   :f (accelerated-force-field accel 1.41 -1)}
                        :listeners {:iter (update-accelerator accel)}})
            :clusters [p1 p2])))
 

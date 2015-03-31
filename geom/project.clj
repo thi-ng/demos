@@ -5,7 +5,7 @@
                  :url "http://www.apache.org/licenses/LICENSE-2.0"}
   :dependencies [[org.clojure/clojure "1.7.0-alpha5"]
                  [org.clojure/clojurescript "0.0-3117"]
-                 [thi.ng/geom "0.0.770"]
+                 [thi.ng/geom "0.0.774-dirty"]
                  [thi.ng/domus "0.1.0"]]
 
   :plugins [[lein-cljsbuild "1.0.5"]]
