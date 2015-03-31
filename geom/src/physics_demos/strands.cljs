@@ -17,12 +17,11 @@
   If strength is negative, particle will be repelled."
   [p q rsq strength delta]
   (let [d (g/- p (phys/position q))
-        l (g/mag-squared d)]
+        l (+ (g/mag-squared d) 1e-6)]
     (if (< l rsq)
-      (if (> l 0.0)
-        (phys/add-force
-         q (g/* d (/ (* (- 1.0 (/ l rsq)) (* strength delta))
-                     (Math/sqrt l))))))))
+      (phys/add-force
+       q (g/* d (/ (* (- 1.0 (/ l rsq)) (* strength delta))
+                   (Math/sqrt l)))))))
 
 (defn accelerated-force-field
   "Takes a mutable quadtree or octree, an attraction radius and strength.
@@ -75,11 +74,11 @@
   particle quadtree in sync. Returns updated state map w/ physics
   related data injected."
   [state n]
-  (let [[p1 s1] (make-strand n 6 (vec2 6 9))
-        [p2 s2] (make-strand n 6 (vec2 12 9))
-        c1      {:c (phys/shape-constraint-inside (c/circle (vec2 9 17) 9))}
-        c2      {:c (phys/shape-constraint-inside (c/circle (vec2 17 17) 9))}
-        accel   (accel/quadtree 0 0 32)]
+  (let [[p1 s1] (make-strand n 6 (vec2 7 2))
+        [p2 s2] (make-strand n 6 (vec2 12 2))
+        c1      {:c (phys/shape-constraint-inside (c/circle (vec2 10 10) 9))}
+        c2      {:c (phys/shape-constraint-inside (c/circle (vec2 17 10) 9))}
+        accel   (accel/quadtree 0 0 26)]
     (doseq [p p1] (phys/add-constraints p c1))
     (doseq [p p2] (phys/add-constraints p c2))
     (assoc state
@@ -102,36 +101,40 @@
   particles."
   [particles stroke fill]
   (let [pos (particle-positions particles)]
-    (svg/group {:stroke stroke}
-               (svg/line-strip pos)
-               (svg/group {:fill fill :stroke "none"} (map #(svg/circle % 0.2) pos)))))
+    (svg/group
+     {:stroke stroke}
+     (svg/line-strip pos)
+     (svg/group
+      {:fill fill :stroke "none"}
+      (sequence (map #(svg/circle % 0.2)) pos)))))
 
 (defn visualize-svg
   "Takes a state map and visualizes the current state of the physic
   sim as SVG DOM element."
-  [{:keys [physics root] :as state}]
+  [{:keys [physics root svg-attrs] :as state}]
   (let [[c1 c2] (:clusters state)]
     (->> root
          (dom/clear!)
          (dom/create-dom!
           (svg/svg
-           {:width 400 :height 400}
+           {:width 400 :height 300}
            (svg/group
-            {:transform (g/scale M32 15) :stroke-width 0.1}
+            svg-attrs
             (svg-strand c1 "#00f" "#0ff")
             (svg-strand c2 "#0f0" "#ff0")))))))
 
 (defn -main
   []
   (let [state (-> {:root (dom/by-id "app")
-                   :gravity (vec2 0 0.025)}
+                   :gravity (vec2 0 0.025)
+                   :svg-attrs {:transform (g/scale M32 15) :stroke-width 0.1}}
                   (init-physics 100)
                   (atom))]
     (animate
      (fn [[t frame]]
-       ;; flip gravity direction every 200 frames
-       (when (zero? (mod frame 200))
-         (swap! state update :gravity g/-)
+       ;; randomize gravity direction every N frames
+       (when (zero? (mod frame 120))
+         (swap! state assoc :gravity (v/randvec2 0.025))
          (swap! state update :physics phys/add-behaviors {:g (phys/gravity (:gravity @state))}))
        (phys/timestep (:physics @state) 2)
        (visualize-svg @state)
