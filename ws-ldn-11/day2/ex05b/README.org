@@ -1,0 +1,11 @@
+* WebWorker example
+
+** Building
+
+#+BEGIN_SRC shell
+lein do clean, cljsbuild once min && node postprocess.js
+
+python -m SimpleHTTPServer
+#+END_SRC
+
+Then go to: http://localhost:8000/resources/public/

@@ -1,0 +1,51 @@
+* Sensorium Digital Fabrication workshop
+
+** Overview
+
+** Tools for today
+*** Git client
+
+http://sourcetreeapp.com
+
+*** Java
+
+http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
+*** Clojure
+
+http://clojure.org
+
+*** Leiningen
+
+http://leiningen.org
+
+*** Inkscape
+
+http://inkscape.org
+
+*** XQuartz
+
+http://xquartz.org
+
+** thi.ng libraries
+*** Overview
+
+- 23+ projects
+- In constant development since 2011
+- Successor to toxiclibs.org
+
+- Today only use http://thi.ng/geom
+
+
+* Running the code
+
+#+BEGIN_SRC shell
+cd ws-bra-1
+lein repl
+#+END_SRC
+
+#+BEGIN_SRC clojure
+(require 'ws-bra-1.core :reload)
+(in-ns 'ws-bra-1.core)
+(ring-cluster "rings.svg" [100 200 75 80])
+#+END_SRC
