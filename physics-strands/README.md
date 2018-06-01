@@ -6,7 +6,7 @@
 
 ```
 lein cljsbuild once prod
-open resources/public/strands.html
+open out/index.html
 ```
 
 ## License

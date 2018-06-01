@@ -1,13 +1,14 @@
-(ns physics-demos.strands
+(ns physics-strands.core
   (:require
+   [thi.ng.math.core :as m]
    [thi.ng.geom.core :as g]
-   [thi.ng.geom.core.vector :as v :refer [vec2 vec3]]
-   [thi.ng.geom.core.matrix :as mat :refer [M32 M44]]
+   [thi.ng.geom.vector :as v :refer [vec2 vec3]]
+   [thi.ng.geom.matrix :as mat :refer [M32 M44]]
    [thi.ng.geom.circle :as c]
    [thi.ng.geom.spatialtree :as accel]
    [thi.ng.geom.svg.core :as svg]
    [thi.ng.geom.physics.core :as phys]
-   [thi.ng.geom.webgl.animator :refer [animate]]
+   [thi.ng.geom.gl.webgl.animator :refer [animate]]
    [thi.ng.domus.core :as dom]))
 
 (defn attract!
@@ -16,11 +17,11 @@
   attraction radius, applies proportional strength force to particle.
   If strength is negative, particle will be repelled."
   [p q rsq strength delta]
-  (let [d (g/- p (phys/position q))
-        l (+ (g/mag-squared d) 1e-6)]
+  (let [d (m/- p (phys/position q))
+        l (+ (m/mag-squared d) 1e-6)]
     (if (< l rsq)
       (phys/add-force
-       q (g/* d (/ (* (- 1.0 (/ l rsq)) (* strength delta))
+       q (m/* d (/ (* (- 1.0 (/ l rsq)) (* strength delta))
                    (Math/sqrt l)))))))
 
 (defn accelerated-force-field
@@ -61,9 +62,9 @@
                        (map-indexed
                         (fn [i p]
                           (let [o (* i fold)]
-                            (map #(g/+ offset (- % o) i) (if (odd? i) (reverse p) p))))))
+                            (map #(m/+ offset (- % o) i) (if (odd? i) (reverse p) p))))))
         particles (mapv phys/particle (mapcat identity particles))
-        springs   (map (fn [[a b]] (phys/spring a b 1 1)) (partition 2 1 particles))]
+        springs   (map (fn [[a b]] (phys/spring a b 0.5 1)) (partition 2 1 particles))]
     [particles springs]))
 
 (defn init-physics
@@ -86,7 +87,7 @@
                       {:particles (concat p1 p2)
                        :springs   (concat s1 s2)
                        :behaviors {:g (phys/gravity (:gravity state))
-                                   :f (accelerated-force-field accel 1.41 -1)}
+                                   :f (accelerated-force-field accel 1 -1)}
                        :listeners {:iter (update-accelerator accel)}})
            :clusters [p1 p2])))
 
@@ -131,7 +132,7 @@
                   (init-physics 100)
                   (atom))]
     (animate
-     (fn [[t frame]]
+     (fn [t frame]
        ;; randomize gravity direction every N frames
        (when (zero? (mod frame 120))
          (swap! state assoc :gravity (v/randvec2 0.025))
