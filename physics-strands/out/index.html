@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
+
+<head>
+    <meta charset="utf-8" />
     <title>geom-physics demos</title>
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata" type="text/css" />
     <link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="app">
     </div>
     <footer>
-      <div class="desc">
-        <h3>Strand clusters + force fields + circular bounds + SVG</h3>
-        <ul>
-          <li>Two strands of 100 particles each</li>
-          <li>Circular constraints (bounds) for each strand</li>
-          <li>Repellent force field around each particle to ensure spacing</li>
-          <li>Force field uses quadtree as acceleration structure</li>
-          <li>Gravity changes direction every N frames</li>
-          <li>Visualization via geom-svg module & <a href="http://thi.ng/domus">thi.ng/domus</a></li>
-        </ul>
-        <p><a href="https://github.com/thi-ng/demos/blob/master/geom/src/physics_demos/strands.cljs">Source</a></p>
-      </div>
-      <div class="creds">Made with <a href="http://thi.ng/geom">thi.ng/geom</a>.</div>
+        <div class="desc">
+            <h3>Strand clusters + force fields + circular bounds + SVG</h3>
+            <ul>
+                <li>Two strands of 100 particles each</li>
+                <li>Circular constraints (bounds) for each strand</li>
+                <li>Repellent force field around each particle to ensure spacing</li>
+                <li>Force field uses quadtree as acceleration structure</li>
+                <li>Gravity changes direction every N frames</li>
+                <li>Visualization via geom-svg module &
+                    <a href="http://thi.ng/domus">thi.ng/domus</a>
+                </li>
+            </ul>
+            <p>
+                <a href="https://github.com/thi-ng/demos/tree/master/physics-strands">Source</a>
+            </p>
+        </div>
+        <div class="creds">Made with
+            <a href="http://thi.ng/geom">thi.ng/geom</a>.</div>
     </footer>
     <script type="text/javascript" src="js/app.js"></script>
-  </body>
+</body>
+
 </html>
