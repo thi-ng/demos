@@ -1,0 +1,94 @@
+body {
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    background: #f0f0f0;
+}
+
+div.transcript, div.interim {
+    font-size: 200%;
+    font-family: Inconsolata, Menlo, monospace;
+    background: #f8f0e0;
+    padding: 10px;
+    min-height: 2em;
+}
+
+div.ann-expr {
+    border-top: 1px solid #e8e0d0;
+    padding: 5px 0;
+}
+
+.ann-type, .ann-number, .ann-keyword, .ann-color, .ann-unknown {
+    margin-right: 0.25em;
+}
+
+.ann-type {
+    color: #f06;
+}
+
+.ann-number {
+    color: #90f;
+}
+
+.ann-keyword {
+    color: #3cf;
+}
+
+.ann-unknown {
+    color: #999;
+    font-weight: 100;
+    text-decoration: line-through;
+}
+
+.ann-color {
+    padding: 5px;
+}
+
+.ann-color-blue {
+    background: #00f;
+    color: white;
+}
+
+.ann-color-red {
+    background: #f00;
+    color: white;
+}
+
+.ann-color-green {
+    background: #0f0;
+    color: black;
+}
+
+.ann-color-yellow {
+    background: #ff0;
+    color: black;
+}
+
+.ann-color-orange {
+    background: #f50;
+    color: white;
+}
+
+.ann-color-pink {
+    background: #f0f;
+    color: white;
+}
+
+.ann-color-cyan {
+    background: #0ff;
+    color: black;
+}
+
+.ann-color-purple {
+    background: #808;
+    color: white;
+}
+
+.ann-color-white {
+    background: white;
+    color: black;
+}
+
+.ann-color-black {
+    background: black;
+    color: white;
+}

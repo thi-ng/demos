@@ -1,0 +1,36 @@
+* ws-mz-1
+
+Clojure/ClojureScript workshop @ HS Mainz (June 2016)
+
+** Resources
+
+- http://clojure.org/
+- https://github.com/clojure/clojurescript
+- http://leiningen.org/
+- http://java.sun.com/
+
+- https://cider.readthedocs.io/
+- https://cursive-ide.com/
+- [[https://gist.github.com/jasongilman/d1f70507bed021b48625][Atom editor & Clojure setup]]
+
+- https://www.conj.io/
+- http://clojuredocs.org/
+- http://crossclj.info/
+- http://clojure-doc.org/
+
+- https://groups.google.com/forum/#!forum/clojure
+- https://groups.google.com/forum/#!forum/clojurescript
+- https://clojurians.slack.com (http://clojurians.net)
+
+** Books
+
+- [[http://braveclojure.com][Brave Clojure]]
+
+TBD
+
+** License
+
+Copyright © 2016 Karsten Schmidt
+
+Distributed under the Apache Software License either version 1.0 or (at
+your option) any later version.

@@ -1,0 +1,17 @@
+.CodeMirror {
+    font-family: "Inconsolata",Menlo,monospace !important;
+    margin-bottom: 1em;
+    height: 400px;
+}
+
+.fullwidth {
+    max-width: 100%;
+}
+
+.form-align {
+    margin-top: 24px;
+}
+
+table.query-results {
+    font-size: 11px;
+}
