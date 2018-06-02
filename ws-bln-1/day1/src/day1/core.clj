@@ -10,7 +10,7 @@
   (->> body
     (svg/svg {:width 200 :height 200})
     (svg/serialize)
-    (spit "berlin.svg")))
+    (spit "out/berlin.svg")))
 
 (export-svg
   (svg/circle [100 100] 100 {:fill "red"})

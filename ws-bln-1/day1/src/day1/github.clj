@@ -54,7 +54,7 @@
 
 
 (let [;;commits   (load-commits-fs ".")
-      commits   (load-commits-gh "mastodonc" "witan.app")
+      commits   (load-commits-gh "thi-ng" "umbrella")
       [from to] (viz/value-domain-bounds commits)
       from      (* (long (/ from week)) week)
       to        (* (inc (long (/ to week))) week)
@@ -81,7 +81,7 @@
        (viz/svg-plot2d-cartesian)
        (svg/svg {:width (+ 70 max-x) :height 120})
        (svg/serialize)
-       (spit "commit-history.svg")))
+       (spit "out/commit-history.svg")))
 
 (defn count-words-in-file
   [path ignores]
@@ -94,4 +94,4 @@
        (sort-by last)
        (reverse)))
 
-(count-words-in-file "src/clj/day1/github.clj")
+(println (count-words-in-file "src/clj/day1/github.clj" #{}))

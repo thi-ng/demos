@@ -1,12 +1,11 @@
 (ns day2.core
   (:require-macros
    [reagent.ratom :refer [reaction]]
-   [cljs.core.async.macros :refer [go go-loop]]
    [cljs-log.core :refer [debug info warn]])
   (:require
     [reagent.core :as reagent]
     [thi.ng.color.core :as col]
-    [thi.ng.geom.core.vector :as v]
+    [thi.ng.geom.vector :as v]
     [thi.ng.geom.svg.core :as svg]))
 
 (defonce app
@@ -25,9 +24,6 @@
   [a b c col]
   (svg/polygon [a b c] {:fill (col/as-hsva (col/rgba (:color @app))) :stroke "black"}))
 
-(defn with-key
-  [attr] (assoc attr :key (rand)))
-
 (defn ^:export app-component
   []
   (let [name (reaction (:name @app))
@@ -35,7 +31,7 @@
     (fn []
       [:div
        [:h1 "hello " @name]
-       [input]
+       [:div [input]]
        [svg/svg
          {:width 600
           :height 600
@@ -44,8 +40,8 @@
             (swap! app
                    (fn [state]
                      (-> state
-                       (assoc-in [:color 0] (* (.-clientX e) 0.001))
-                       (assoc-in [:color 2] (* (.-clientY e) 0.001))))))
+                       (assoc-in [:color 0] (* (.-clientX e) 0.002))
+                       (assoc-in [:color 2] (* (.-clientY e) 0.002))))))
           }
          ^{:key "t1"} [triangle [0 0] [300 0] @mpos "red"]
          ]])))
